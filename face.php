@@ -21,7 +21,7 @@
 				for($i = 0;$i<5;$i++){
 					?>
 					<dd>
-						<img src="face/<?php echo $i?>.png" alt='头像'>
+						<img src="face/<?php echo $i?>.png" alt='头像<?php echo $i?>'>
 					</dd>
 					<?php
 				}

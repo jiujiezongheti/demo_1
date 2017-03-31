@@ -6,6 +6,21 @@
 	require_once dirname(__FILE__).'/includes/common.inc.php';
 	//调用样式定义
 	define('SCRIPT','register');
+
+	//判断是否提交了数据
+	$submit = isset($_POST['submit'])?$_POST['submit']:'';
+	//对前端传值进行赋值
+	$uname = isset($_POST['uname'])?$_POST['uname']:'';
+	$pwd = isset($_POST['pwd'])?$_POST['pwd']:'';
+	$pwdt = isset($_POST['pwdt'])?$_POST['pwdt']:''; //密码提示
+	$pwdh = isset($_POST['pwdh'])?$_POST['pwdh']:'';
+	$sex = isset($_POST['sex'])?$_POST['sex']:'';
+	$head_img = isset($_POST['head_img'])?$_POST['head_img']:'';
+	$email = isset($_POST['email'])?$_POST['email']:'';
+	$qq = isset($_POST['qq'])?$_POST['qq']:'';
+	$url = isset($_POST['url'])?$_POST['url']:'';
+	$yzm = isset($_POST['yzm'])?$_POST['yzm']:'';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +34,7 @@
 	<?php my_incfile('header');?>
 	<div id='register'>
 		<h2>会员注册</h2>
-		<form method='post' action='post.php'>
+		<form method='post' action='register.php'>
 			<dl>
 				<dt>请认真填写内容</dt>
 				<dd>用 户 名:
@@ -47,8 +62,8 @@
 					<input type='radio' name='sex' value='女'>女
 				</dd>
 				<dd class='face' >
-					<img src="/face/1.png" alt='头像选择' id='face_img'>
-					<input type='hidden' name='head_img' id='head_img'>
+					<img src="/face/2.png" title='头像选择' id='face_img'>
+					<input type='hidden' name='head_img' id='head_img' value='/face/2.png'>
 				</dd>
 				<dd>电子邮件:
 					<input type='text' class='text' name='email'>

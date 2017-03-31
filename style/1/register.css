@@ -30,6 +30,8 @@ dd input.text{
 	border:1px dashed #333;
 	background: #fff;
 	padding-left: 3px;
+}
+input{
 	outline: none;
 }
 dd input.yzm{
