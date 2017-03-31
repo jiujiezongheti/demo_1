@@ -1,0 +1,49 @@
+@CHARSET 'UTF-8';
+#register{
+	width: auto;
+	height: 600px;
+	border: 2px solid #ccc;
+	font-size: 12px;
+}
+#register h2{
+	text-indent: 0;
+	text-align: center;
+}
+dl{
+	width: 400px;
+	margin: 0 auto;
+}
+dt{
+	text-align: center;
+	padding:10px 0;
+	font-weight: 600;
+}
+dd{
+	margin: 5px 0;
+}
+.face{
+	text-align: center;
+}
+dd input.text{
+	width: 220px;
+	height: 19px;
+	border:1px dashed #333;
+	background: #fff;
+	padding-left: 3px;
+	outline: none;
+}
+dd input.yzm{
+	width: 60px;
+}
+dd img{
+	cursor: pointer;
+	vertical-align: bottom;
+}
+.submit{
+	width: 60px;
+	height: 19px;
+	border: 1px dashed #333;
+	cursor: pointer;
+	background: #fff;
+	margin-left: 120px;
+}

@@ -1,0 +1,25 @@
+body{
+	width: auto;
+}
+#face h3{
+	width: 80%;
+	margin: 10px auto;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px dashed #333;
+}
+#face dl{
+	width: 80%;
+	margin: 0 auto;
+}
+#face dd{
+	width: 140px;
+	margin: 5px;
+	display: inline-block;
+}
+#face dd img{
+	width: 140px;
+	height: 140px;
+	cursor: pointer;
+}
