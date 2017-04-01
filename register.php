@@ -7,20 +7,20 @@
 	//调用样式定义
 	define('SCRIPT','register');
 
+	$post_data = array();
 	//判断是否提交了数据
-	$submit = isset($_POST['submit'])?$_POST['submit']:'';
+	$post_data["submit"] = isset($_POST['submit'])?$_POST['submit']:'';
 	//对前端传值进行赋值
-	$uname = isset($_POST['uname'])?$_POST['uname']:'';
-	$pwd = isset($_POST['pwd'])?$_POST['pwd']:'';
-	$pwdt = isset($_POST['pwdt'])?$_POST['pwdt']:''; //密码提示
-	$pwdh = isset($_POST['pwdh'])?$_POST['pwdh']:'';
-	$sex = isset($_POST['sex'])?$_POST['sex']:'';
-	$head_img = isset($_POST['head_img'])?$_POST['head_img']:'';
-	$email = isset($_POST['email'])?$_POST['email']:'';
-	$qq = isset($_POST['qq'])?$_POST['qq']:'';
-	$url = isset($_POST['url'])?$_POST['url']:'';
-	$yzm = isset($_POST['yzm'])?$_POST['yzm']:'';
-
+	$post_data["uname"] = isset($_POST['uname'])?$_POST['uname']:'';
+	$post_data["pwd"] = isset($_POST['pwd'])?$_POST['pwd']:'';
+	$post_data["pwdt"] = isset($_POST['pwdt'])?$_POST['pwdt']:''; //密码提示
+	$post_data["pwdh"] = isset($_POST['pwdh'])?$_POST['pwdh']:'';
+	$post_data["sex"] = isset($_POST['sex'])?$_POST['sex']:'';
+	$post_data["head_img"] = isset($_POST['head_img'])?$_POST['head_img']:'';
+	$post_data["email"] = isset($_POST['email'])?$_POST['email']:'';
+	$post_data["qq"] = isset($_POST['qq'])?$_POST['qq']:'';
+	$post_data["url"] = isset($_POST['url'])?$_POST['url']:'';
+	$post_data["yzm"] = isset($_POST['yzm'])?$_POST['yzm']:'';
 ?>
 <!DOCTYPE html>
 <html>

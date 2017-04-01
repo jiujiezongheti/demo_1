@@ -10,6 +10,15 @@
 	}
 
 	/**
+	 * [_alert_back 表示js弹窗提示信息]
+	 * @param  string $_info 提示信息
+	 * @return void        弹窗
+	 */
+	function _alert_back($_info){
+		echo "<sctipt type='text/javascript'>alert('".$_info."');history.back();</script>";
+		exit();
+	}
+	/**
 	 * my_incfile()用来获取includes文件中的inc文件
 	 * @ $file char 不加‘.inc.php’的inc文件名
 	 * @return char includes文件硬路径
