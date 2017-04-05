@@ -11,16 +11,37 @@
 	//判断是否提交了数据
 	$post_data["submit"] = isset($_POST['submit'])?$_POST['submit']:'';
 	//对前端传值进行赋值
-	$post_data["uname"] = isset($_POST['uname'])?$_POST['uname']:'';
-	$post_data["pwd"] = isset($_POST['pwd'])?$_POST['pwd']:'';
-	$post_data["pwdt"] = isset($_POST['pwdt'])?$_POST['pwdt']:''; //密码提示
-	$post_data["pwdh"] = isset($_POST['pwdh'])?$_POST['pwdh']:'';
-	$post_data["sex"] = isset($_POST['sex'])?$_POST['sex']:'';
-	$post_data["head_img"] = isset($_POST['head_img'])?$_POST['head_img']:'';
-	$post_data["email"] = isset($_POST['email'])?$_POST['email']:'';
-	$post_data["qq"] = isset($_POST['qq'])?$_POST['qq']:'';
-	$post_data["url"] = isset($_POST['url'])?$_POST['url']:'';
-	$post_data["yzm"] = isset($_POST['yzm'])?$_POST['yzm']:'';
+	if($post_data["submit"]){//正常表单提交
+		//调用表单验证函数库
+		include_once ROOT_PATH.'includes/register.func.php';
+		//用户名
+		$post_data["uname"] = isset($_POST['uname'])?$_POST['uname']:'';
+		$post_data["uname"] = _check_username($post_data["uname"]);
+		//密码
+		$post_data["pwd"] = isset($_POST['pwd'])?$_POST['pwd']:'';
+		$post_data["pwds"] = isset($_POST['pwds'])?$_POST['pwds']:'';
+		$post_data["pwd"] = _check_pwd($post_data["pwd"],$post_data["pwds"]);
+
+		//密码提示
+		$post_data["pwdt"] = isset($_POST['pwdt'])?$_POST['pwdt']:''; //密码提示
+		$post_data["pwdt"] = _check_pwdt($post_data["pwdt"]);
+
+		//提示回答
+		$post_data["pwdh"] = isset($_POST['pwdh'])?$_POST['pwdh']:'';
+		$post_data["pwdh"] = _check_pwdh($post_data["pwdh"]);
+
+
+		$post_data["sex"] = isset($_POST['sex'])?$_POST['sex']:'';
+		$post_data["head_img"] = isset($_POST['head_img'])?$_POST['head_img']:'';
+		//email
+		$post_data["email"] = isset($_POST['email'])?$_POST['email']:'';
+		$post_data["email"] = _check_email($post_data["email"]);
+
+		$post_data["qq"] = isset($_POST['qq'])?$_POST['qq']:'';
+		$post_data["url"] = isset($_POST['url'])?$_POST['url']:'';
+		$post_data["yzm"] = isset($_POST['yzm'])?$_POST['yzm']:'';
+	}
+	var_dump($post_data);
 ?>
 <!DOCTYPE html>
 <html>

@@ -15,7 +15,7 @@
 	 * @return void        弹窗
 	 */
 	function _alert_back($_info){
-		echo "<sctipt type='text/javascript'>alert('".$_info."');history.back();</script>";
+		echo "<script type='text/javascript'>alert('".$_info."');history.back();</script>";
 		exit();
 	}
 	/**
