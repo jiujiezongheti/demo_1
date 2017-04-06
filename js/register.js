@@ -7,4 +7,12 @@ window.onload = function(){
 	code.onclick = function(){
 		this.src = 'code.php?num='+Math.random();
 	}
+
+
+	//表单验证
+	var fm = document.getElementsByTagName('form')[0];
+	fm.onsubmit = function(){
+		console.log('hello');
+		return false;
+	}
 }

@@ -8,6 +8,10 @@
 		exit('_alert_back is not exists!');
 	}
 
+	if(!function_exists('_mysql_string')){
+		exit('_mysql_string is not exists!');
+	}
+
 	/**
 	 * [_check_username 用户名验证函数]
 	 * @param  string  $_string  用户输入的用户名
@@ -40,7 +44,7 @@
 		}
 
 		//防止sql注入
-		return addslashes($_string);
+		return _mysql_string($_string);
 	}
 
 /**
@@ -62,7 +66,7 @@
 		}
 
 		//输出密码
-		return sha1($_string);
+		return _mysql_string(sha1($_string));
 	}
 
 
@@ -83,7 +87,7 @@
 		}
 
 		//返回密码提示，防数据库注入
-		return addslashes($_string);
+		return _mysql_string($_string);
 	}
 
 
@@ -108,17 +112,77 @@
 		if($pwdh==$pwdt){
 			_alert_back('密码提示和回答不能相同');
 		}
-		return sha1($pwdh);
+		return _mysql_string(sha1($pwdh));
 	}
 
 
 	//email
+	/**
+	 * [_check_email 检测邮箱格式]
+	 * @param  string $string 用户输入的邮箱
+	 * @return string         验证后的邮箱
+	 */
 	function _check_email($string){
-		if(!empty($string)){
-			if(!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $string)){
-				_alert_back('邮件格式不正确');
+		$string = trim($string);
+		
+		if(!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $string)){
+			_alert_back('邮件格式不正确');
+		}
+
+		return _mysql_string($string);
+	}
+
+	/**
+	 * [_check_qq 检查qq函数]
+	 * @param  string $string 传入用户输入的qq
+	 * @return string         检测后的qq
+	 */
+	function _check_qq($string){
+		if(empty($string)){
+			return null;
+		}else{
+			if(!preg_match('/^[1-9]{1}[0-9]{4,9}$/', $string)){
+				_alert_back('qq格式不正确');
 			}
 		}
-		return addslashes($string);
+		return _mysql_string($string); 
+	}
+
+	/**
+	 * [_check_url 检查填写的url]
+	 * @param  string $string 用户输入的url地址
+	 * @return string         检查后的url地址
+	 */
+	function _check_url($string){
+		if(empty($string)||($string=='http://')){
+			return null;
+		}else{
+			if(!preg_match('/^https?:\/\/(\w+\.)?[\w\-\.]+(\.\w+)+$/', $string)){
+				_alert_back('url格式不正确');
+			}
+		}
+		return _mysql_string($string);
+	}
+
+/**
+ * [_check_uniqid 检验网站是否合法访问]
+ * @param  string $first_uniqid [description]
+ * @param  string $end_uniqid   [description]
+ * @return string               [description]
+ */
+	function _check_uniqid($first_uniqid,$end_uniqid){
+		if((strlen($first_uniqid)!=40)||$first_uniqid!=$end_uniqid){
+			_alert_back('网站访问不合法');
+		}
+		return _mysql_string($first_uniqid);
+	}
+
+/**
+ * [_check_head_img 转义头像]
+ * @param  string $string 头像路径
+ * @return string         转义头像路径
+ */
+	function _check_head_img($string){
+		return _mysql_string(trim($string));
 	}
 ?>

@@ -2,6 +2,7 @@
 	if(!defined('IN_TG')){
 		exit('you can not use it!');
 	}
+	mysql_close();
 ?>
 	<div id='footer'>
 		<p>版权所有 翻版必究</p>
