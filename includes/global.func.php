@@ -117,7 +117,12 @@ function _sha1_uniqid(){
 	return _mysql_string(sha1(uniqid(rand(),true)));
 }
 
-
+/**
+ * [_location 重定向到指定位置，并弹窗提示信息]
+ * @param  string $_info 弹窗提示信息
+ * @param  string $_url  需要跳转的url地址
+ * @return void        
+ */
 function _location($_info,$_url){
 	echo "<script type='text/javascript'>alert('".$_info."');location.href='".$_url."';</script>";
 	exit();
