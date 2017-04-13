@@ -124,11 +124,13 @@
 	 */
 	function _check_email($string){
 		$string = trim($string);
-		
-		if(!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $string)){
-			_alert_back('邮件格式不正确');
+		if(empty($string)){
+			return null;
+		}else{
+			if(!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $string)){
+				_alert_back('邮件格式不正确');
+			}
 		}
-
 		return _mysql_string($string);
 	}
 

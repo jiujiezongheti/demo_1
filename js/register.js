@@ -80,6 +80,6 @@ window.onload = function(){
 			return false;
 		}
 		console.log('success');
-		return false;
+		return true;
 	}
 }

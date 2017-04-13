@@ -14,6 +14,7 @@
 	 * @param  string $_info 提示信息
 	 * @return void        弹窗
 	 */
+
 	function _alert_back($_info){
 		echo "<script type='text/javascript'>alert('".$_info."');history.back();</script>";
 		exit();
@@ -53,7 +54,7 @@
 	function _code($num_code = 4,$_width = 75,$_height = 25,$font = 5,$_num_line = 6){
 		//创建随机码
 		$_nmsg='';
-		for ($i=0; $i < $num_code; $i++) { 
+		for ($i=0; $i < $num_code; $i++) {
 			$_nmsg .= dechex(mt_rand(0,15));
 		}
 		//保存在session中
@@ -101,6 +102,7 @@
  * @param  string $end_code 系统生成验证码
  * @return string          验证码
  */
+
 	function _check_code($first_code,$end_code){
 		if($first_code == $end_code){
 			return $first_code;
