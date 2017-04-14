@@ -60,8 +60,14 @@
 		_is_repeat("select uname from tg_user where uname='{$post_data['uname']}'",'该用户已被注册');
 
 		_query("insert into tg_user(uniqid,active,uname,pwd,pwdt,pwdh,head_img,qq,url,sex,email,reg_time,last_time,last_ip) values ('{$post_data["uniqid"]}','{$post_data["active"]}','{$post_data["uname"]}','{$post_data["pwd"]}','{$post_data["pwdt"]}','{$post_data["pwdh"]}','{$post_data["head_img"]}','{$post_data["qq"]}','{$post_data["url"]}','{$post_data["sex"]}','{$post_data["email"]}',".time().",".time().",'{$_SERVER['REMOTE_ADDR']}')");
-		mysql_close();
-		_location('恭喜你注册成功','index.php');
+		if(_affected_rows()==1){
+			mysql_close();
+			_location('恭喜你注册成功','active.php?active='.$post_data["active"]);
+		}else{
+			mysql_close();
+			_location('注册失败','register.php');
+		}
+		
 	}
 	//唯一标识符防止恶意注册网站内容
 	$_SESSION['uniqid'] = $_uniqid = _sha1_uniqid();

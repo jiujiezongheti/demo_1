@@ -35,7 +35,11 @@ function _set_names(){
 	}
 }
 
-
+/**
+ * [_query 数据库执行函数]
+ * @param  string $_sql 需要执行的竖起了、语句
+ * @return object       执行语句后的资源句柄
+ */
 function _query($_sql){
 	if(!$result = mysql_query($_sql)){
 		exit('SQL执行失败'.mysql_error());
@@ -53,5 +57,13 @@ function _is_repeat($sql,$_info){
 	if(_fetch_array($sql)){
 		_alert_back($_info);
 	}
+}
+
+/**
+ * 表示影响到的记录数
+ * @return [type] [description]
+ */
+function _affected_rows(){
+	return mysql_affected_rows();
 }
 ?>
