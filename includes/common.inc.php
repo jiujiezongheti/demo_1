@@ -1,4 +1,5 @@
 <?php
+	header("Content-type: text/html; charset=utf-8");//防止php输出乱码
 	if(!defined('IN_TG')){
 		exit('you can not use it!');
 	}
