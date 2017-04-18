@@ -25,7 +25,7 @@
 	define('DB_HOST', 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PWD', '');
-	define('DB_NAME','learn_demo1');
+	define('DB_NAME','demo1');
 
 	//初始化数据库
 	_connect();
