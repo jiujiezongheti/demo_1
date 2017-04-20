@@ -10,7 +10,7 @@
 	define('GPC',get_magic_quotes_gpc());
 	//拒绝低版本php
 	if(PHP_VERSION<5.5){
-		exit('phpversion<5.6');
+		exit('phpversion<5.5');
 	}
 
 	//引入核心函数库
