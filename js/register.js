@@ -1,12 +1,9 @@
 window.onload = function(){
-	var face_img = document.getElementById('face_img'),
-		code = document.getElementById('code');
+	var face_img = document.getElementById('face_img');
 	face_img.onclick=function(){
 		window.open('face.php','face','width=400,height=400,top=0,left=0,scrollbars=1');
 	}
-	code.onclick = function(){
-		this.src = 'code.php?num='+Math.random();
-	}
+	code();
 
 
 	//表单验证
@@ -79,7 +76,6 @@ window.onload = function(){
 			this.url.focus();
 			return false;
 		}
-		console.log('success');
 		return true;
 	}
 }

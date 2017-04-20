@@ -78,6 +78,7 @@
 <meta charset='utf-8'>
 <title>注册</title>
 <?php my_incfile('title');?>
+<script type="text/javascript" src='js/code.js'></script>
 <script type="text/javascript" src='js/register.js'></script>
 </head>
 <body>

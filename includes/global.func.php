@@ -126,7 +126,18 @@ function _sha1_uniqid(){
  * @return void        
  */
 function _location($_info,$_url){
-	echo "<script type='text/javascript'>alert('".$_info."');location.href='".$_url."';</script>";
-	exit();
+	if(empty($_info)){
+		header("Location:".$_url);
+	}else{
+		echo "<script type='text/javascript'>alert('".$_info."');location.href='".$_url."';</script>";
+		exit();
+	}
+}
+/**
+ * [_session_destroy 清除session]
+ * @return void
+ */
+function _session_destroy(){
+	session_destroy();
 }
 ?>
