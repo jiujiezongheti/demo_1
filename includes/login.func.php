@@ -75,10 +75,27 @@
 	 * [_setcookies 设置cookie]
 	 * @param  string $uname  用户名
 	 * @param  string $uniqid 唯一标识
+	 * @param  string $time 保存时间
 	 * @return [type]         
 	 */
-	function _setcookies($uname,$uniqid){
-		setcookie('uname',$uname);
-		setcookie('uniqid',$uniqid);
+	function _set_cookies($uname,$uniqid,$time){
+		switch($time){
+			case '0'://浏览器进程
+				setcookie('uname',$uname);
+				setcookie('uniqid',$uniqid);
+				break;
+			case '1'://一天
+				setcookie('uname',$uname,time()+86400);
+				setcookie('uniqid',$uniqid,time()+86400);
+				break;
+			case '2'://一周
+				setcookie('uname',$uname,time()+604800);
+				setcookie('uniqid',$uniqid,time()+604800);
+			break;
+				case '3'://一月
+				setcookie('uname',$uname,time()+2592000);
+				setcookie('uniqid',$uniqid,time()+2592000);
+				break;
+		}
 	}
 ?>

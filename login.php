@@ -5,7 +5,8 @@ define('IN_TG',true);
 require_once dirname(__FILE__).'/includes/common.inc.php';
 //调用样式定义
 define('SCRIPT','login');
-
+//登录状态
+_login_state();
 //接收登录数据
 $post_data = array();
 //判断是否提交了数据
@@ -37,8 +38,8 @@ if($post_data["submit"]){//正常表单提交
 		mysql_close();
 		_session_destroy();
 		//生成cookie
-		
-		_location(null,'index.php');
+		_set_cookies($_rows['uname'],$_rows['uniqid'],$post_data["time"]);
+		_location(null,'member.php');
 	}else{
 		mysql_close();
 		_session_destroy();

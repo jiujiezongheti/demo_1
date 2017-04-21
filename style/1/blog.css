@@ -1,0 +1,37 @@
+#blog{
+	width: auto;
+	height: 800px;
+	border: 2px solid #ccc;
+	font-size: 12px;
+}
+#blog h2{
+	text-indent: 0;
+	text-align: center;
+}
+#blog dl{
+	width: 150px;
+	float: left;
+	margin:10px 0 0 32px;
+}
+#blog dl dt{
+	width: 150px;
+	margin-bottom: 5px;
+}
+#blog dl dt img{
+	display: block;
+	width: 80px;
+	height: 80px;
+	margin: 0 auto;
+}
+#blog dl dd{
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	width: 75px;
+	float: left;
+}
+#blog dl dd.user{
+	width: 150px;
+	float: none;
+	color: #f60;
+}

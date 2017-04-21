@@ -66,4 +66,17 @@ function _is_repeat($sql,$_info){
 function _affected_rows(){
 	return mysql_affected_rows();
 }
+
+/**
+ * [_fetch_array_list 返回指定数据集的所有数据]
+ * @param  array $_result 结果集
+ * @return [type]          array
+ */
+function _fetch_array_list($_result){
+	return mysql_fetch_array($_result,MYSQL_ASSOC);
+}
+
+function _num_rows($_result){
+	return mysql_num_rows($_result);
+}
 ?>

@@ -140,4 +140,101 @@ function _location($_info,$_url){
 function _session_destroy(){
 	session_destroy();
 }
+
+/**
+ * [unsetcookie 删除cookie,跳转到首页]
+ * @return void
+ */
+function unsetcookie(){
+	setcookie('uname',null,time()-1);
+	setcookie('uniqid',null,time()-1);
+	_session_destroy();
+	_location(null,'index.php');
+}
+
+/**
+ * [_login_state 登录状态]
+ * @return [type] [description]
+ */
+function _login_state(){
+	if(isset($_COOKIE['uname'])){
+		_alert_back('登录状态无法操作');
+	}
+}
+
+/**
+ * [_paging 分页函数]
+ * @param  number $_type 类型:1数字，2文本
+ * @return [type]        [description]
+ */
+function _paging($_type){
+	global $_pagenow,$_pagemax,$_num;
+	if($_type==1){ //数字
+		echo '<div id="page_num"><ul>';
+		for($i=0;$i<$_pagemax;$i++){
+			$selected = '';
+			if($i==$_pagenow) $selected = 'selected';
+			echo '<li><a href="'.SCRIPT.'.php?page='.($i+1)
+			.'" class="'.$selected.'">'.($i+1).'</a></li>';
+		}
+		echo '</ul></div>';
+	}elseif ($_type==2) { //文本
+		echo '<div id="page_text"><ul>'
+		.'<li>'.($_pagenow+1).'/'.$_pagemax.'<span>|</span></li>'
+		.'<li>共有<strong>'.$_num.'</strong>个会员<span>|</span></li>';
+		if($_pagenow == 0){
+			echo '<li>首页<span>|</span></li>'
+			.'<li>上一页<span>|</span></li>';
+		}else{			
+			echo '<li><a href="'.SCRIPT.'.php">首页</a><span>|</span></li>'
+			.'<li><a href="'.SCRIPT.'.php?page='.$_pagenow.'">上一页</a><span>|</span></li>';
+		}	
+		if($_pagenow == $_pagemax-1){
+			echo '<li>下一页<span>|</span></li><li>尾页</li>';
+		}else{
+			echo '<li><a href="'.SCRIPT.".php?page=".($_pagenow+2).'">下一页</a><span>|</span></li>'
+			.'<li><a href="'.SCRIPT.".php?page=".$_pagemax.'">尾页</a></li>';
+		}
+		echo '</ul></div>';
+	}
+}
+
+/**
+ * [_page description]
+ * @param  integer $size 每页显示条数
+ * @param  string  $_sql 执行的sql语句
+ * @return void        [description]
+ */
+function _page($size=10,$_sql="select id from tg_user"){
+	global $_pagesize,$_pagenum,$_pagenow,$_num,$_pagemax;
+	$_pagesize = $size;
+	//从数据库里面提取数据
+	$_pagenow = intval(isset($_GET['page'])?$_GET['page']-1:0);
+	//获取所有数据总和
+	$_num = _num_rows(_query($_sql));
+	$_pagemax = ceil($_num/$_pagesize);
+	if($_pagenow<0){
+		$_pagenow=0;
+	}elseif($_pagenow>$_pagemax-1){
+		$_pagenow = $_pagemax-1;
+	}
+	$_pagenum = $_pagesize*$_pagenow;
+	
+}
+
+/**
+ * [_html 表示对字符串进行HTML过滤,可支持对字符串和数组（一维或者多维）过滤]
+ * @param  [string|array] $_string [要html过滤的数据]
+ * @return [string|array]          [经过html过滤后的数据]
+ */
+function _html($_string){
+	if(is_array($_string)){
+		foreach ($_string as $key => $value) {
+			$_string[$key] = _html($value);
+		}
+	}else{
+		$_string = htmlspecialchars($_string);
+	}
+	return $_string;
+}
 ?>

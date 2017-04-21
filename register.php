@@ -6,7 +6,8 @@
 	require_once dirname(__FILE__).'/includes/common.inc.php';
 	//调用样式定义
 	define('SCRIPT','register');
-
+	//登录状态
+	_login_state();
 	$post_data = array();
 	//判断是否提交了数据
 	$post_data["submit"] = isset($_POST['submit'])?$_POST['submit']:'';
