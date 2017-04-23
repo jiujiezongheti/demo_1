@@ -3,24 +3,13 @@
 define('IN_TG',true);
 require_once dirname(__FILE__).'/includes/common.inc.php';
 //调用样式定义
-define('SCRIPT','member');
+define('SCRIPT','member_modify');
 //是否正常登陆
 if(isset($_COOKIE['uname'])){
 	//获取数据
 	$_rows = _fetch_array("select * from tg_user where uname='".$_COOKIE['uname']."'");
 	if($_rows){
 		$_rows = _html($_rows);
-		switch ($_rows['level']) {
-			case 0:
-				$_rows['level']='普通会员';
-				break;
-			case 1:
-				$_rows['level']='管理员';
-				break;
-			default:
-				$_rows['level']='出错';
-				break;
-		}
 	}else{
 		_alert_back('此用户不存在');
 	}
@@ -45,11 +34,9 @@ if(isset($_COOKIE['uname'])){
 				<dd>用户名:<?php echo $_rows['uname']?></dd>
 				<dd>性别:<?php echo $_rows['sex']?></dd>
 				<dd>头像:<?php echo $_rows['head_img']?></dd>
-				<dd>电子邮件:<?php echo $_rows['email']?></dd>
-				<dd>主页:<?php echo $_rows['url']?></dd>
-				<dd>QQ:<?php echo $_rows['qq']?></dd>
-				<dd>注册时间:<?php echo date('Y-m-d H:i:s',$_rows['reg_time'])?></dd>
-				<dd>身份:<?php echo $_rows['level']?></dd>
+				<dd>电子邮件:<input type="text" value="<?php echo $_rows['email']?>" name='email'></dd>
+				<dd>主页:<input type="text" value="<?php echo $_rows['url']?>" name='url'></dd>
+				<dd>QQ:<input type="text" value="<?php echo $_rows['qq']?>" name='qq'></dd>
 			</dl>
 		</div>
 	</div>

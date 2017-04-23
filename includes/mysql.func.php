@@ -76,7 +76,21 @@ function _fetch_array_list($_result){
 	return mysql_fetch_array($_result,MYSQL_ASSOC);
 }
 
+/**
+ * [_num_rows 返回查询结果条数]
+ * @param  [type] $_result 结果集
+ * @return number       查询结果条数
+ */
 function _num_rows($_result){
 	return mysql_num_rows($_result);
+}
+
+/**
+ * [_free_result 销毁结果集]
+ * @param  结果集 $_result 结果集
+ * @return void          
+ */
+function _free_result($_result){
+	mysql_free_result($_result);
 }
 ?>

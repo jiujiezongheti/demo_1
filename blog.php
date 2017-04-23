@@ -22,7 +22,9 @@ $_result = _query("select uname,head_img,sex from tg_user order by reg_time desc
 	<?php my_incfile('header');?>
 	<div id="blog">
 		<h2>博友列表</h2>
-		<?php while (!!$_rows = _fetch_array_list($_result,MYSQL_ASSOC)){?>
+		<?php while (!!$_rows = _fetch_array_list($_result,MYSQL_ASSOC)){
+			$_rows=_html($_rows);
+			?>
 		<dl>
 			<dd class='user'><?php echo $_rows['uname'].'('.$_rows['sex'].')';?></dd>
 			<dt><img src="<?php echo $_rows['head_img']?>" alt="<?php echo $_rows['uname']?>"></dt>
@@ -32,6 +34,7 @@ $_result = _query("select uname,head_img,sex from tg_user order by reg_time desc
 			<dd>给ta送花</dd>
 		</dl>
 		<?php }
+			_free_result($_result);
 			_paging(1);
 		?>
 	</div>
