@@ -7,7 +7,7 @@ define('SCRIPT','member');
 //是否正常登陆
 if(isset($_COOKIE['uname'])){
 	//获取数据
-	$_rows = _fetch_array("select * from tg_user where uname='".$_COOKIE['uname']."'");
+	$_rows = _fetch_array("select * from tg_user where uname='{$_COOKIE['uname']}' limit 1");
 	if($_rows){
 		$_rows = _html($_rows);
 		switch ($_rows['level']) {
@@ -44,7 +44,9 @@ if(isset($_COOKIE['uname'])){
 			<dl>
 				<dd>用户名:<?php echo $_rows['uname']?></dd>
 				<dd>性别:<?php echo $_rows['sex']?></dd>
-				<dd>头像:<?php echo $_rows['head_img']?></dd>
+				<dd class='face' >头像:
+					<img src="<?php echo $_rows['head_img']?>" id='face_img'>
+				</dd>
 				<dd>电子邮件:<?php echo $_rows['email']?></dd>
 				<dd>主页:<?php echo $_rows['url']?></dd>
 				<dd>QQ:<?php echo $_rows['qq']?></dd>

@@ -15,7 +15,7 @@
 	//对前端传值进行赋值
 	if($post_data["submit"]){//正常表单提交
 		//调用表单验证函数库
-		include_once ROOT_PATH.'includes/register.func.php';
+		include_once ROOT_PATH.'includes/check.func.php';
 		//唯一标识验证
 		$post_data["uniqid"] = isset($_POST['uniqid'])?$_POST['uniqid']:'';
 		$post_data["uniqid"] = _check_uniqid($post_data["uniqid"],$_SESSION['uniqid']);

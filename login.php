@@ -5,6 +5,7 @@ define('IN_TG',true);
 require_once dirname(__FILE__).'/includes/common.inc.php';
 //调用样式定义
 define('SCRIPT','login');
+$_time = time();
 //登录状态
 _login_state();
 //接收登录数据
@@ -35,6 +36,8 @@ if($post_data["submit"]){//正常表单提交
 
 	//数据库验证
 	if(!!$_rows = _fetch_array("select uname,uniqid from tg_user where uname = '".$post_data["uname"]."' and pwd='".$post_data["pwd"]."' and active = '' limit 1")){
+		//登录成功后，记录登录信息
+		_query("update tg_user set last_time='{$_time}',last_ip='{$_SERVER['REMOTE_ADDR']}',login_count=login_count+1 where uname='{$_rows['uname']}'");
 		mysql_close();
 		_session_destroy();
 		//生成cookie

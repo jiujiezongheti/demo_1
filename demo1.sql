@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost_3306
 Source Server Version : 50617
 Source Host           : localhost:3306
-Source Database       : learn_demo1
+Source Database       : demo1
 
 Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-04-18 11:12:28
+Date: 2017-04-24 17:07:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,5 +35,6 @@ CREATE TABLE `tg_user` (
   `reg_time` varchar(255) DEFAULT NULL COMMENT '注册时间',
   `last_time` varchar(255) DEFAULT NULL COMMENT '最后登录时间',
   `last_ip` varchar(255) DEFAULT NULL COMMENT '最后登录ip',
+  `level` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '会员等级',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;

@@ -21,13 +21,29 @@
 	}
 
 /**
+ * [_alert_close 弹出提示信息并关闭窗口]
+ * @param  [string] $_info [提示信息]
+ * @return [type]        [description]
+ */
+function _alert_close($_info){
+	echo "<script type='text/javascript'>alert('".$_info."');window.close();</script>";
+	exit();
+}
+
+/**
  * [_mysql_string 判断是否转义字符]
- * @param  string $_string 是否需要转义的字符
+ * @param  array[string] $_string 是否需要转义的字符或数组
  * @return string          处理后的
  */
 	function _mysql_string($_string){
 		if(!GPC){
-			$_string = addslashes($_string);
+			if(is_array($_string)){
+				foreach ($_string as $key => $value) {
+					$_string[$key] = _mysql_string($value);
+				}
+			}else{
+				$_string = addslashes($_string);
+			}
 		}
 		return $_string;
 	}
@@ -205,7 +221,7 @@ function _paging($_type){
  * @param  string  $_sql 执行的sql语句
  * @return void        [description]
  */
-function _page($size=10,$_sql="select id from tg_user"){
+function _page($size=15,$_sql="select id from tg_user"){
 	global $_pagesize,$_pagenum,$_pagenow,$_num,$_pagemax;
 	$_pagesize = $size;
 	//从数据库里面提取数据
@@ -236,5 +252,16 @@ function _html($_string){
 		$_string = htmlspecialchars($_string);
 	}
 	return $_string;
+}
+/**
+ * [_uniqid 判断唯一标识符是否异常]
+ * @param  [string] $_mysql_uniqid  [数据库取出的uniqid]
+ * @param  [string] $_cookie_uniqid [cookie中的uniqid]
+ * @return [type]                 [description]
+ */
+function _uniqid($_mysql_uniqid,$_cookie_uniqid){
+	if($_mysql_uniqid!=$_cookie_uniqid){
+		_alert_back('唯一标识符异常');
+	}
 }
 ?>

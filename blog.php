@@ -9,7 +9,7 @@ require_once dirname(__FILE__).'/includes/common.inc.php';
 define('SCRIPT','blog');
 global $_pagenum,$_pagesize;
 _page();
-$_result = _query("select uname,head_img,sex from tg_user order by reg_time desc limit $_pagenum,$_pagesize");
+$_result = _query("select id,uname,head_img,sex from tg_user order by reg_time desc limit $_pagenum,$_pagesize");
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,7 @@ $_result = _query("select uname,head_img,sex from tg_user order by reg_time desc
 <meta charset='utf-8'>
 <title>博友</title>
 <?php my_incfile('title');?>
+<script src='js/blog.js'></script>
 </head>
 <body>
 	<?php my_incfile('header');?>
@@ -28,7 +29,7 @@ $_result = _query("select uname,head_img,sex from tg_user order by reg_time desc
 		<dl>
 			<dd class='user'><?php echo $_rows['uname'].'('.$_rows['sex'].')';?></dd>
 			<dt><img src="<?php echo $_rows['head_img']?>" alt="<?php echo $_rows['uname']?>"></dt>
-			<dd>发消息</dd>
+			<dd><a href="" name='message' title="<?php echo $_rows['id']?>">发消息</a></dd>
 			<dd>加好友</dd>
 			<dd>写留言</dd>
 			<dd>给ta送花</dd>
