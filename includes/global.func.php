@@ -154,7 +154,9 @@ function _location($_info,$_url){
  * @return void
  */
 function _session_destroy(){
-	session_destroy();
+	if(session_start()){
+		session_destroy();
+	}
 }
 
 /**
@@ -263,5 +265,18 @@ function _uniqid($_mysql_uniqid,$_cookie_uniqid){
 	if($_mysql_uniqid!=$_cookie_uniqid){
 		_alert_back('唯一标识符异常');
 	}
+}
+
+/**
+ * [_substr 字符串截取函数]
+ * @param  [string]  $_string [需要截取的字符串]
+ * @param  integer $_num    [截取长度]
+ * @return [string]           [截取后的字符串]
+ */
+function _substr($_string,$_num=14){
+	if(mb_strlen($_string,'utf-8')>$_num){
+		$_string = mb_substr($_string, 1,$_num,'utf-8');
+	}
+	return $_string;
 }
 ?>

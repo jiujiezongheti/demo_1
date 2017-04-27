@@ -33,7 +33,7 @@ $_result = _query("select id,fromuser,content,send_time from message order by se
 					?>
 					<tr>
 						<td><?php echo $_rows['fromuser'];?></td>
-						<td><?php echo $_rows['content'];?></td>
+						<td><a href="member_message_detail.php?id=<?php echo $_rows['id']?>" title="<?php echo $_rows['content'];?>"><?php echo _substr($_rows['content']);?></a></td>
 						<td><?php echo date('Y-m-d H:i:s',$_rows['send_time']);?></td>
 						<td></td>
 					</tr>
