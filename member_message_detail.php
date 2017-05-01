@@ -24,6 +24,8 @@ if($action=='delete'){
 			mysql_close();
 			_location('删除失败','register.php');
 		}
+	}else{
+		_alert_back('非法登录');
 	}
 }
 if(isset($_GET['id'])){
