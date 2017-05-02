@@ -231,10 +231,11 @@ function _page($size=15,$_sql="select id from tg_user"){
 	//获取所有数据总和
 	$_num = _num_rows(_query($_sql));
 	$_pagemax = ceil($_num/$_pagesize);
+	if($_pagenow>$_pagemax-1){
+		$_pagenow = $_pagemax-1;
+	}
 	if($_pagenow<0){
 		$_pagenow=0;
-	}elseif($_pagenow>$_pagemax-1){
-		$_pagenow = $_pagemax-1;
 	}
 	$_pagenum = $_pagesize*$_pagenow;
 	

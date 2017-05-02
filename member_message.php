@@ -35,8 +35,9 @@ if($action=='delete'&&isset($_POST['ids'])){
 
 //分页
 global $_pagenum,$_pagesize;
-_page(15,"select id from message");
-$_result = _query("select id,state,fromuser,content,send_time from message order by send_time desc limit $_pagenum,$_pagesize");
+_page(15,"select id from message where touser='{$_COOKIE['uname']}'");
+//echo "select id,state,fromuser,content,send_time from message where touser='{$_COOKIE['uname']}' order by send_time desc limit $_pagenum,$_pagesize";
+$_result = _query("select id,state,fromuser,content,send_time from message where touser='{$_COOKIE['uname']}' order by send_time desc limit $_pagenum,$_pagesize");
 
 ?>
 <!DOCTYPE html>

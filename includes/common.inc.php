@@ -33,7 +33,7 @@
 	_set_names();
 
 	//短信提醒
-	$_message = _fetch_array("SELECT COUNT(id) AS count FROM message WHERE state=0");
+	$_message = _fetch_array("SELECT COUNT(id) AS count FROM message WHERE state=0 AND touser='{$_COOKIE['uname']}'");
 	if(empty($_message['count'])){
 		$_message_html = '<strong>(0)</strong>';
 	}else{

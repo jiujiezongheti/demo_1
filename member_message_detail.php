@@ -16,7 +16,7 @@ if($action=='delete'){
 			//防止cookie伪造
 		_uniqid($_rows['uniqid'],$_COOKIE['uniqid']);
 		//删除单条短信
-		_query("delete from message where id='{$id}' limit 1");
+		_query("delete from message where id='{$id}' and touser='{$_COOKIE['uname']}' limit 1");
 		if(_affected_rows()==1){
 			mysql_close();
 			_location('删除成功','member_message.php');
@@ -30,10 +30,10 @@ if($action=='delete'){
 }
 //处理
 if(isset($_GET['id'])){
-	$_result = _fetch_array("select state,id,fromuser,content,send_time from message where id='{$_GET['id']}' limit 1");
+	$_result = _fetch_array("select state,id,fromuser,content,send_time from message where id='{$_GET['id']}' and touser='{$_COOKIE['uname']}' limit 1");
 	if($_result){
 		if(empty($_result['state'])){
-			_query("UPDATE message SET state=1 WHERE id='{$_GET['id']}' LIMIT 1");
+			_query("UPDATE message SET state=1 WHERE id='{$_GET['id']}' AND touser='{$_COOKIE['uname']}' LIMIT 1");
 			if(_affected_rows()!=1){
 				_alert_back('异常');
 			}
