@@ -28,9 +28,16 @@ if($action=='delete'){
 		_alert_back('非法登录');
 	}
 }
+//处理
 if(isset($_GET['id'])){
-	$_result = _fetch_array("select id,fromuser,content,send_time from message where id='{$_GET['id']}' limit 1");
+	$_result = _fetch_array("select state,id,fromuser,content,send_time from message where id='{$_GET['id']}' limit 1");
 	if($_result){
+		if(empty($_result['state'])){
+			_query("UPDATE message SET state=1 WHERE id='{$_GET['id']}' LIMIT 1");
+			if(_affected_rows()!=1){
+				_alert_back('异常');
+			}
+		}
 		$_rows = _html($_result);
 	}else{
 		_alert_back('此短信不存在');

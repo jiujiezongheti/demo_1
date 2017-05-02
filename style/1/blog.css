@@ -35,3 +35,7 @@
 	float: none;
 	color: #f60;
 }
+#blog dl dd a{
+	text-decoration: none;
+	color: #333;
+}

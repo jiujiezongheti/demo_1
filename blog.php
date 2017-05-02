@@ -29,8 +29,8 @@ $_result = _query("select id,uname,head_img,sex from tg_user order by reg_time d
 		<dl>
 			<dd class='user'><?php echo $_rows['uname'].'('.$_rows['sex'].')';?></dd>
 			<dt><img src="<?php echo $_rows['head_img']?>" alt="<?php echo $_rows['uname']?>"></dt>
-			<dd><a href="" name='message' title="<?php echo $_rows['id']?>">发消息</a></dd>
-			<dd>加好友</dd>
+			<dd><a href="javascript:;" name='message' title="<?php echo $_rows['id']?>">发消息</a></dd>
+			<dd><a href="javascript:;" name='friend' title="<?php echo $_rows['id']?>">加为好友</a></dd>
 			<dd>写留言</dd>
 			<dd>给ta送花</dd>
 		</dl>

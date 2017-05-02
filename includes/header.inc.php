@@ -2,7 +2,7 @@
 	if(!defined('IN_TG')){
 		exit('you can not use it!');
 	}
-
+	global $_message_html;
 ?>
 <div id='header'>
 	<ul>
@@ -10,7 +10,7 @@
 		
 		<?php
 			if(isset($_COOKIE['uname'])){
-				echo '<li><a href="member.php">'.$_COOKIE['uname'].'~个人中心</a></li>';
+				echo '<li><a href="member.php">'.$_COOKIE['uname'].'~个人中心</a>'.$_message_html.'</li>';
 			}else{
 				?>
 					<li><a href="register.php">注册</a></li>

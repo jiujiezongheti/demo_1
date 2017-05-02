@@ -32,4 +32,11 @@
 	_select_db();
 	_set_names();
 
+	//短信提醒
+	$_message = _fetch_array("SELECT COUNT(id) AS count FROM message WHERE state=0");
+	if(empty($_message['count'])){
+		$_message_html = '<strong>(0)</strong>';
+	}else{
+		$_message_html = '<strong>('.$_message['count'].')</strong>';
+	}
 ?>

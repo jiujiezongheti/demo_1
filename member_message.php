@@ -36,7 +36,8 @@ if($action=='delete'&&isset($_POST['ids'])){
 //分页
 global $_pagenum,$_pagesize;
 _page(15,"select id from message");
-$_result = _query("select id,fromuser,content,send_time from message order by send_time desc limit $_pagenum,$_pagesize");
+$_result = _query("select id,state,fromuser,content,send_time from message order by send_time desc limit $_pagenum,$_pagesize");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,14 +55,20 @@ $_result = _query("select id,fromuser,content,send_time from message order by se
 			<h2>短信查阅</h2>
 			<form action="?action=delete" method='post'>
 				<table cellspacing='1'>
-					<tr><th>发信人</th><th>短信内容</th><th>时间</th><th>操作</th></tr>
+					<tr><th>发信人</th><th>短信内容</th><th>时间</th><th>状态</th><th>操作</th></tr>
 					<?php while (!!$_rows = _fetch_array_list($_result,MYSQL_ASSOC)){
+						if(empty($_rows['state'])){
+							$_rows['state'] = '未读';
+						}else{
+							$_rows['state'] = '已读';
+						}
 						$_rows=_html($_rows);
 						?>
 						<tr>
 							<td><?php echo $_rows['fromuser'];?></td>
 							<td><a href="member_message_detail.php?id=<?php echo $_rows['id']?>" title="<?php echo $_rows['content'];?>"><?php echo _substr($_rows['content']);?></a></td>
 							<td><?php echo date('Y-m-d H:i:s',$_rows['send_time']);?></td>
+							<td><?php echo $_rows['state'];?></td>
 							<td>
 								<input type="checkbox" name='ids[]' value="<?php echo $_rows['id']?>">
 							</td>
@@ -70,11 +77,11 @@ $_result = _query("select id,fromuser,content,send_time from message order by se
 						_free_result($_result);
 					?>
 					<tr>
-						<td colspan="4">
-							<span for='all'>
+						<td colspan="5">
+							<label for='all'>
 								选择全部
 								<input type="checkbox" name='chkall' id='all'>
-							</span>
+							</label>
 							<input type="submit" value='批删除'>
 						</td>
 					</tr>
